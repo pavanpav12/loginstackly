@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly Bank Login</title>
+
+<style>
+
+/* ---------- BASIC ---------- */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial, sans-serif;
+}
+
+body{
+background:#f2f4f7;
+height:100vh;
+}
+
+/* MAIN WRAPPER */
+.main{
+display:flex;
+height:100vh;
+}
+
+/* ---------- LEFT FORM SIDE ---------- */
+.left{
+width:50%;
+background:#f6f7f9;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:40px;
+}
+
+/* FORM BOX */
+.form-box{
+width:380px;
+max-width:100%;
+}
+
+.form-box h1{
+font-size:34px;
+margin-bottom:6px;
+color:#111;
+}
+
+.form-box p{
+color:#666;
+margin-bottom:30px;
+}
+
+/* INPUT FIELDS */
+.field{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+font-size:14px;
+margin-bottom:6px;
+}
+
+input{
+width:100%;
+padding:13px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:14px;
+}
+
+input:focus{
+outline:none;
+border-color:#e11d2e;
+}
+
+/* REMEMBER + FORGOT */
+.options{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:13px;
+margin-bottom:18px;
+color:#555;
+}
+
+.options a{
+text-decoration:none;
+color:#e11d2e;
+}
+
+/* BUTTON */
+.login-btn{
+width:100%;
+padding:14px;
+background:#ff2d3b;
+border:none;
+color:#fff;
+font-size:15px;
+border-radius:8px;
+cursor:pointer;
+margin-bottom:12px;
+}
+
+.login-btn:hover{
+background:#d61f2c;
+}
+
+/* GOOGLE BUTTON */
+.google{
+width:100%;
+padding:13px;
+background:#fff;
+border:1px solid #ddd;
+border-radius:8px;
+cursor:pointer;
+text-align:center;
+font-size:14px;
+}
+
+.google:hover{
+background:#f1f1f1;
+}
+
+.signup{
+margin-top:15px;
+font-size:13px;
+text-align:center;
+}
+
+.signup a{
+color:#e11d2e;
+text-decoration:none;
+}
+
+/* MESSAGE */
+.msg{
+margin-top:10px;
+color:red;
+font-size:14px;
+text-align:center;
+}
+
+/* ---------- RIGHT IMAGE SIDE ---------- */
+.right{
+width:50%;
+background:#ffffff;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:40px;
+}
+
+.right img{
+max-width:90%;
+height:auto;
+}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:900px){
+
+.main{
+flex-direction:column;
+height:auto;
+}
+
+.left{
+width:100%;
+padding:30px 20px;
+}
+
+.right{
+width:100%;
+padding:20px;
+order:-1; /* image moves top */
+}
+
+.right img{
+max-width:300px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="main">
+
+<!-- LEFT LOGIN -->
+<div class="left">
+
+<div class="form-box">
+
+<h1>WELCOME BACK</h1>
+<p>Stackly Banking  Digital Services.</p>
+
+<form id="loginForm">
+
+<div class="field">
+<label>Email</label>
+<input type="email" id="email" placeholder="Enter your email" required>
+</div>
+
+<div class="field">
+<label>Mobile Number</label>
+<input type="text" id="mobile" maxlength="10" placeholder="10 digit number">
+</div>
+
+<div class="field">
+<label>Password</label>
+<input type="password" id="password" placeholder="********">
+</div>
+
+<div class="options">
+<label><input type="checkbox"> Remember me</label>
+<a href="#">Forgot password</a>
+</div>
+
+<button class="login-btn">Sign In</button>
+
+<div class="google">Sign in with Google</div>
+
+<div class="signup">
+Don't have an account? <a href="#">Sign up</a>
+</div>
+
+<div class="msg" id="msg"></div>
+
+</form>
+
+</div>
+</div>
+
+<!-- RIGHT BANK IMAGE -->
+<div class="right">
+<img src="bot.webp" alt="banking">
+</div>
+
+</div>
+
+<script>
+
+/* Allow only numbers in mobile */
+document.getElementById("mobile").addEventListener("keypress",function(e){
+let ch=String.fromCharCode(e.which);
+if(!/[0-9]/.test(ch)){
+e.preventDefault();
+}
+});
+
+/* Form Validation */
+document.getElementById("loginForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let mobile=document.getElementById("mobile").value.trim();
+let password=document.getElementById("password").value.trim();
+let msg=document.getElementById("msg");
+
+if(mobile.length!==10){
+msg.innerText="Enter valid 10 digit mobile number";
+return;
+}
+
+if(password.length<4){
+msg.innerText="Invalid password";
+return;
+}
+
+msg.style.color="green";
+msg.innerText="Login Successful (Demo Portal)";
+
+});
+
+</script>
+
+</body>
+</html>
